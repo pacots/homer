@@ -8,5 +8,5 @@ nodes:
         hostPort: 8080
         protocol: TCP
       - containerPort: 31434
-        hostPort: 11434
+        hostPort: 31434
         protocol: TCP

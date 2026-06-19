@@ -61,17 +61,20 @@ Prepare a local Kubernetes cluster on the development machine and deploy Ollama 
   - [ ] Use `kind` for a lightweight, disposable local cluster.
   - [ ] Use `minikube` if GPU/device access or a more VM-like setup is preferred.
   - [ ] Use Docker Desktop Kubernetes if it is already enabled.
-  - Using `kind`:
-        Windows
-        ├── Docker Desktop
-        │   └── WSL2 backend
-        │
-        └── WSL2 Ubuntu
-            ├── kubectl
-            ├── kind
-            └── cluster Kubernetes "homer"
-                ├── node container
-                └── namespace homer
+  
+  Using `kind`:
+
+      Windows
+      ├── Docker Desktop
+      │   └── WSL2 backend
+      │
+      └── WSL2 Ubuntu
+          ├── kubectl
+          ├── kind
+          └── Kubernetes cluster: "homer"
+              ├── node container
+              └── namespace: "homer"
+      
 
 - [ ] Install the required local tools:
   - [ ] `kubectl`

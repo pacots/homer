@@ -34,6 +34,8 @@ spec:
           env:
             - name: OLLAMA_HOST
               value: "0.0.0.0:11434"
+            - name: OLLAMA_MODEL
+              value: "llama3.2:3b"
           volumeMounts:
             - name: homer-llm-data
               mountPath: /root/.ollama

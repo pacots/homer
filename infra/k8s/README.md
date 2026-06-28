@@ -99,6 +99,7 @@ Deploy the complete Homer stack (namespace, Ollama, and Open WebUI):
 kubectl apply -f infra/k8s/homer-namespace.yaml
 kubectl apply -f infra/k8s/homer-llm.yaml
 kubectl apply -f infra/k8s/homer-openweb-ui.yaml
+kubectl apply -f infra/k8s/homer-agent.yaml
 ```
 
 Or deploy all at once:
@@ -125,6 +126,16 @@ Deploy only the Open WebUI:
 
 ```bash
 kubectl apply -f infra/k8s/homer-openweb-ui.yaml
+```
+
+Create and load agent image:
+```bash
+docker build -t homer-agent:0.1 services/agent
+kind load docker-image homer-agent:0.1 --name homer
+```
+Deploy only the agent:
+```bash
+kubectl apply -f infra/k8s/homer-agent.yaml
 ```
 
 ### Verify Deployment
@@ -417,6 +428,27 @@ Inside the temporary pod:
 ```sh
 curl http://homer-llm:11434/api/tags
 curl http://homer-open-webui
+```
+
+### Scaling Services
+Review:
+```bash
+kubectl get all -n homer
+kubectl get pods -n homer
+```
+
+Down:
+```bash
+kubectl scale deployment/homer-llm -n homer --replicas=0
+kubectl scale deployment/homer-open-webui -n homer --replicas=0
+kubectl scale deployment/homer-agent -n homer --replicas=0
+```
+
+Up:
+```bash
+kubectl scale deployment/homer-llm -n homer --replicas=1
+kubectl scale deployment/homer-open-webui -n homer --replicas=1
+kubectl scale deployment/homer-agent -n homer --replicas=1
 ```
 
 ### Delete Services

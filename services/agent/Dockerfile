@@ -18,4 +18,6 @@ COPY ./src ./src
 ENV PYTHONPATH=/app/src
 
 # Run the application
-CMD ["uv", "run", "python", "src/main.py"]
+EXPOSE 8080
+
+CMD ["uv", "run", "uvicorn", "agent:app", "--host", "0.0.0.0", "--port", "8080"]
